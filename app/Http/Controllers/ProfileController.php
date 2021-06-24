@@ -16,7 +16,7 @@ class ProfileController extends Controller
 
    public function index()
    {
-      return view('profile');
+      return view('admin.profile');
    }
 
    public function update(Request $request)
@@ -25,7 +25,6 @@ class ProfileController extends Controller
          'name' => 'required|string|max:255',
          'last_name' => 'nullable|string|max:255',
          'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id,
-         'cpf_cnpj' => 'required|formato_cpf_cnpj|unique:users',
          'current_password' => 'nullable|required_with:new_password',
          'new_password' => 'nullable|min:8|max:12|required_with:current_password',
          'password_confirmation' => 'nullable|min:8|max:12|required_with:new_password|same:new_password'
@@ -35,7 +34,6 @@ class ProfileController extends Controller
       $user = User::findOrFail(Auth::user()->id);
       $user->name = $request->input('name');
       $user->surname = $request->input('surname');
-      $user->cpf_cnpj = $request->input('cpf_cnpj');
       $user->cellphone = $request->input('cellphone');
       $user->email = $request->input('email');
 
@@ -49,6 +47,6 @@ class ProfileController extends Controller
 
       $user->save();
 
-      return redirect()->route('profile')->withSuccess('Profile updated successfully.');
+      return redirect()->route('profile')->withSuccess('Perfil atualizado com sucesso.');
    }
 }

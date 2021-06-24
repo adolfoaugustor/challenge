@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');
+
+Route::get('/account', 'AccountController@register')->name('account.register');
+Route::post('/account/store', 'AccountController@storeAccount')->name('account.store');

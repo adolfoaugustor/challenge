@@ -41,27 +41,19 @@
                             </div>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="card-body">
 
-                    <!-- <div class="row">
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">22</span>
-                                <span class="description">Friends</span>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <h1 class="h3 mb-4 text-gray-800">Clique no botão para criar sua conta!</h5>
+                                <a href="{{ route('account.register') }}" class="btn btn-success btn-lg">Abrir Conta</a>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">10</span>
-                                <span class="description">Photos</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">89</span>
-                                <span class="description">Comments</span>
-                            </div>
-                        </div>
-                    </div> -->
+                    </div>
+                    
                 </div>
             </div>
 
@@ -113,7 +105,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="cpf_cnpj">CPF / CNPJ</label>
-                                        <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" placeholder="Last name" value="{{ old('cpf_cnpj', Auth::user()->cpf_cnpj) }}">
+                                        <input type="text" id="cpf_cnpj" class="form-control" name="cpf_cnpj" disabled placeholder="Last name" value="{{ old('cpf_cnpj', Auth::user()->cpf_cnpj) }}">
                                     </div>
                                 </div>
                             </div>
@@ -151,9 +143,7 @@
                     </form>
 
                 </div>
-
             </div>
-
         </div>
 
     </div>
