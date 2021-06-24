@@ -71,3 +71,6 @@ Ao finalizar envie uma chamada para o nosso slack (a url está no e-mail. Se nã
 Caso já esteja em processo de avaliação, é interessante também informar o(a) seu(sua) recrutador(a) sobre a conclusão desta etapa.
 
 **Lembre-se de não enviar arquivos compilados e configurações de IDE ao submeter a sua solução.** 
+
+Adicionais[https://github.com/geekcom/validator-docs]
+composer require geekcom/validator-docs

@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/register', 'Auth\AuthController@register')->name('register');
+Route::post('/register', 'Auth\AuthController@storeUser');
+
+Route::get('/login', 'Auth\AuthController@login')->name('login');
+Route::post('/login', 'Auth\AuthController@authenticate');
+Route::get('logout', 'Auth\AuthController@logout')->name('logout');
+
+Route::get('/home', 'Auth\AuthController@home')->name('home');
+
+Route::get('profile', function () {
+    // Only authenticated users may enter...
+})->middleware('auth');
