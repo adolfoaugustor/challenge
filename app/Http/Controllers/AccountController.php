@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\User;
 use App\Account;
-use Auth;
-use Hash;
+use \Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -23,68 +22,23 @@ class AccountController extends Controller
 
     public function storeAccount(Request $request)
     {
-        // 'user_id',
-        // 'social_reason',
-        // 'fantasy_name',
-        // 'agency',
-        // 'number',
-        // 'digit',
-        // 'type_account',]
-        dd($request->request);
+        $request->validate([
+            'social_reason' => 'required|string|max:255',
+            'fantasy_name'  => 'required|string|max:255',
+            'amount'        => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
+        ]);
         
-        $request->validate([
-            'user_id' => 'required|string|max:255',
-            'social_reason' => 'required|string|email|max:255|unique:users',
-            'fantasy_name' => 'required|formato_cpf_cnpj|unique:users',
-
-            'agency' => 'required|string|min:8|confirmed',
-            'number' => 'required',
-            'digit' => 'required',
-            'type_account' => 'required',
+        Account::create([
+            'user_id' => Auth::user()->id,
+            'social_reason' => $request->social_reason,
+            'fantasy_name' => $request->fantasy_name,
+            'cpf_cnpj' => Auth::user()->cpf_cnpj,
+            'agency' => 1,
+            'amount' => floatval($request->amount),
+            'number' => intval(Carbon::now()->format('Y').Auth::user()->id),
+            'type_account' => strlen(Auth::user()->cpf_cnpj) <= 14 ? 'person' : 'company',
         ]);
 
-        // Account::create([
-        //     'user_id' => $request->name,
-        //     'social_reason' => $request->email,
-        //     'fantasy_name' => $request->surname,
-        //     'agency' => $request->cpf_cnpj,
-        //     'number' => $request->cellphone,
-        //     'digit' => $request->cellphone,
-        //     'type_account' => ,
-        // ]);
-
-        return redirect('profile');
-    }
-
-    public function login()
-    {
-        return view('auth.login');
-    }
-
-    public function authenticate(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('home');
-        }
-
-        return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');
-    }
-
-    public function logout() {
-        Auth::logout();
-
-        return redirect('login');
-    }
-
-    public function home()
-    {
-        return view('home');
+        return redirect('profile')->with('sucess', 'Conta criada!');
     }
 }

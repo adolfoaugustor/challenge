@@ -30,20 +30,20 @@
                                     <input type="hidden" name="token" value="{{ $token }}">
 
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ $email ?? old('email') }}" required autofocus>
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail') }}" value="{{ $email ?? old('email') }}" required autofocus>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Password') }}" required>
+                                        <input type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Senha') }}" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
+                                        <input type="password" class="form-control form-control-user" name="password_confirmation" placeholder="{{ __('Confirmar Senha') }}" required>
                                     </div>
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            {{ __('Reset Password') }}
+                                            {{ __('Resetar Senha') }}
                                         </button>
                                     </div>
                                 </form>

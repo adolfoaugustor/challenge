@@ -29,31 +29,64 @@
 
             <div class="card shadow mb-4">
                 <div class="card-profile-image mt-4">
-                    <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 60px; height: 180px; width: 180px;" data-initial="{{ Auth::user()->name[0] }}"></figure>
+                    <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 60px; height: 180px; width: 180px; left: 35%;" data-initial="{{ Auth::user()->name[0] }}"></figure>
                 </div>
-                <div class="card-body">
 
+                <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <h5 class="font-weight-bold">{{  Auth::user()->name }} {{  Auth::user()->surname }}</h5>
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="card-body">
+                                @if ($account->id != null)
+                                <table width="100%">
+                                    <tbody>                            
+                                        <tr>
+                                            <th>{{ $account->type_account == 'person' ? "Nome":"Razão Social" }}</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ $account->social_reason}}</td>
+                                        </tr>
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="text-center">
-                                <h1 class="h3 mb-4 text-gray-800">Clique no botão para criar sua conta!</h5>
-                                <a href="{{ route('account.register') }}" class="btn btn-success btn-lg">Abrir Conta</a>
+                                        @if ($account->type_account != 'person')
+                                        <tr>
+                                            <th>Nome Fantasia</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ $account->fantasy_name}}</td>
+                                        </tr>
+                                        @endif
+
+                                        <tr>
+                                            <th>{{ $account->type_account == 'person' ? "CPF":"CNPJ" }}</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ Auth::user()->cpf_cnpj }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Agência</th>
+                                        </tr>
+                                        <tr>
+                                            <td>000{{ $account->agency }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Conta</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ $account->number }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                @else
+                                <div class="col-lg-12">
+                                    <div class="text-center">
+                                        <h1 class="h3 mb-4 text-gray-800">Clique no botão para criar sua conta!</h5>
+                                        <a href="{{ route('account.register') }}" class="btn btn-success btn-lg">Abrir Conta</a>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
 

@@ -16,6 +16,7 @@ class Account extends Model
         'social_reason',
         'fantasy_name',
         'agency',
+        'amount',
         'number',
         'digit',
         'type_account',

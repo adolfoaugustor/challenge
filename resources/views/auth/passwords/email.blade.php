@@ -34,12 +34,12 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail') }}" value="{{ old('email') }}" required>
                                     </div>
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            {{ __('Send Password Reset Link') }}
+                                            {{ __('Enviar link de redefinição de senha') }}
                                         </button>
                                     </div>
                                 </form>

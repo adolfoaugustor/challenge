@@ -16,7 +16,9 @@ class ProfileController extends Controller
 
    public function index()
    {
-      return view('admin.profile');
+      
+      $account = User::find(Auth::user()->id)->account;
+      return view('admin.profile', compact('account'));
    }
 
    public function update(Request $request)

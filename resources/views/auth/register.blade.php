@@ -57,7 +57,7 @@
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            {{ __('Register') }}
+                                            {{ __('Registrar-se') }}
                                         </button>
                                     </div>
                                 </form>
@@ -66,7 +66,7 @@
 
                                 <div class="text-center">
                                     <a class="small" href="{{ route('login') }}">
-                                        {{ __('Already have an account? Login!') }}
+                                        {{ __('já tem uma conta? Conecte-se!') }}
                                     </a>
                                 </div>
                             </div>

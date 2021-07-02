@@ -21,11 +21,12 @@ class CreateAccountsTable extends Migration
             $table->string('fantasy_name', 191)->nullable();
             $table->integer('agency')->default('1');
             $table->integer('number');
+            $table->float('amount', 8, 2);            
+            $table->string('status', 191)->default('pedding');
             $table->integer('digit')->default('21');
             $table->enum('type_account', ['person', 'company']);
             
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
