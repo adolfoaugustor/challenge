@@ -20,6 +20,7 @@ class Account extends Model
         'number',
         'digit',
         'type_account',
+        'status',
     ];
 
     public function user()

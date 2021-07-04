@@ -7,6 +7,8 @@ use \Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
@@ -39,6 +41,31 @@ class AccountController extends Controller
             'type_account' => strlen(Auth::user()->cpf_cnpj) <= 14 ? 'person' : 'company',
         ]);
 
-        return redirect('profile')->with('sucess', 'Conta criada!');
+        Mail::send('emails.activeAccount', $this->link, function ($message)use($request){
+            $message->from(Config::get('mail.from.teste'))
+                    ->to(Auth::user()->email)
+                    ->subject('Active Account IDEZ');
+        });
+        
+        return redirect('profile')->with('sucess', 'Account create, verify your email for active account!');
+    }
+
+    public function activateAccount($id)
+    {
+        if(Auth::user()->id === $id){
+
+            $account = Account::where('user_id', $id)->first();
+            $account->status = 'accept';
+            $account->save();
+        }else{
+            redirect('profile')->with('error', 'Você');
+        }
+
+        return redirect('profile')->with('sucess', 'Account Created!');
+    }
+
+    public function link($id)
+    {
+        echo url("/account/active/{$id}");
     }
 }

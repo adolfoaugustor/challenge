@@ -4,6 +4,12 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">{{ __('Perfil') }}</h1>
 
+    @if ( $message = Session::get('sucess'))
+        <div class="alert alert-sucess alert-block">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong> {{ $message }} </strong>
+        </div>
+    @endif
     @if (session('success'))
         <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
